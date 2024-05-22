@@ -13,7 +13,7 @@
     <title>لوحة التحكم</title>
     <script>
         $(document).ready(function () {
-     
+          $("#slider-container").load("/slider.html");
      $.ajax({
                 url: 'api/income.php',
                 type: 'get',
@@ -31,8 +31,9 @@
 
 <body>
     <!--Main Navigation-->
-    <?php include 'slider.php';?>
-   
+    <div id="slider-container">
+      <!-- سيتم تحميل محتوى الـ slider هنا -->
+    </div>
       <!--Main Navigation-->
 
       <!--Main layout-->
