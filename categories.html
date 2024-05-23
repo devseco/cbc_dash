@@ -146,9 +146,9 @@ input[type=checkbox] {
                 
                   <hr>
 
-                <p><a href="#">
-                     برمجة وتصميم نجمة للبرمجيات
-                    </a>  </p>
+                <p>
+                     برمجة وتصميم علي سيكو
+                    </p>
                 </div>
                 
               </section>
@@ -189,78 +189,8 @@ input[type=checkbox] {
     </div>
   </div>
 </div>
-<div class="modal fade text-right" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h5 class="modal-title" id="exampleModalLabel">اضافة لون جديد</h5>
-        
-      </div>
-      <div class="modal-body">
-         <div class="mb-3">
-          <label for="pic" class="form-label">اللون</label>
-        <input type="text" class="form-control" id="color" aria-label="اكتب اللون" aria-describedby="inputGroup-sizing-default">
-        </div>
-      
-         <div class="mb-3">
-          <label for="pic" class="form-label">العدد</label>
-        <input type="text" class="form-control" id="count" aria-label="اكتب العدد" aria-describedby="inputGroup-sizing-default" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" >
-        </div>
-        <div class="mb-3">
-          <label for="pic" class="form-label">القياس</label>
-         <select class="custom-select form-control" id="size">         
-                <option disabled selected value> -- اختر القياس -- </option>
-                <option value="Xxxxxl">Xxxxxl</option>
-                <option value="Xxxxl">Xxxxl</option>
-                <option value="Xxxl">Xxxl</option> 
-                <option value="Xxl">Xxl</option>
-                <option value="Xl">Xl</option>
-                <option value="L">L</option>
-                <option value="M">M</option>
-                <option value="S">S</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-            </select>
-        </div>
-        <div class="mb-3">
-          <label for="pic" class="form-label">قسم المنتج</label>
-         <select class="custom-select form-control" id="cat">         
-                <option disabled selected value> -- اختر القسم -- </option>
-            </select>
-        </div>
-        <div class="mb-3">
-          <label for="pic" class="form-label">اختر المنتج</label>
-         <select class="custom-select form-control" id="item">         
-                <option disabled selected value> -- اختر المنتج -- </option>
-            </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary " data-dismiss="modal">الغاء</button>
-        &nbsp;
-        <button type="button" class="btn btn-success" id="save">حفظ</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
 
+<script>
     $('#upload').on('click', function() {
         var file_data = $('#pic').prop('files')[0];
         var name = document.getElementById("name").value;
