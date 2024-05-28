@@ -20,7 +20,7 @@
         $("#slider-container").load("/slider.html");
         $('#loading').show();
         $.ajax({
-          url: 'http://127.0.0.1:3000/getAllBill',
+          url: 'http://89.116.110.51:4000/getAllBill',
           type: 'GET',
           dataType: 'json',
           success: function (data) {
@@ -215,7 +215,7 @@
       var status = $('#stat').val();
       if (status != "") {
         $.ajax({
-          url: "http://127.0.0.1:3000/changeStatus",
+          url: "http://89.116.110.51:4000/changeStatus",
           method: "POST",
           contentType: "application/json", // تحديد نوع المحتوى كـ JSON
           data: JSON.stringify({ id: ids, status: status }), // تحويل البيانات إلى JSON

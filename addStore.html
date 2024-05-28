@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Bootstrap CSS -->
+    <script src="https://kit.fontawesome.com/bbfd9c6b3d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script>
+     $(document).ready(function () {
+        $("#slider-container").load("/slider.html");
+        
+      });
+
+    </script>
+    <title>لوحة التحكم</title>
+    <style>
+        .preview-image {
+        max-width: 100px; /* تحديد الحجم الأقصى للصورة */
+        margin: 5px; /* تباعد بين الصور */
+        position: relative; /* لتحديد موقع الزر بالنسبة للصورة */
+    }
+    .delete-btn {
+        position: absolute; /* لوضع الزر فوق الصورة */
+        top: 0;
+        right: 0;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+
+<body>
+    <!--Main Navigation-->
+ 
+    <div id="slider-container">
+      <!-- سيتم تحميل محتوى الـ slider هنا -->
+    </div>
+      <!--Main Navigation-->
+
+      <!--Main layout-->
+      <main style="margin-top: 10px;">
+        <div class="container pt-3  justify-content-center" >
+            <section id="boxes" class="py-5">
+                <div class="container">
+                      <h1 class="details">اضافة متجر</h1>
+                   <br/>
+                   <div class="text-right pb-3 pr-5">
+                    <button type="button" class="btn btn-primary float-rigth pull-right" id="upload">
+                     اضافة 
+                   </button>
+                   </div>
+                   <div class="container">
+                    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="basic-info-tab" data-toggle="tab" href="#basic-info" role="tab" aria-controls="basic-info" aria-selected="true">المعلومات الأساسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">الروابط</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="branches-tab" data-toggle="tab" href="#branches" role="tab" aria-controls="branches" aria-selected="false">الفروع</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="images" aria-selected="false">المعرض</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="offers-tab" data-toggle="tab" href="#offers" role="tab" aria-controls="offers" aria-selected="false">العروض الحصرية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ads-tab" data-toggle="tab" href="#ads" role="tab" aria-controls="ads" aria-selected="false">الاعلانات</a>
+                        </li>
+                        <!-- إضافة المزيد من العلامات التبويبية هنا -->
+                    </ul>
+
+                    <div class="tab-content" id="myTabsContent" dir="rtl" style="text-align: right;">
+                        <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab" style="padding: 20px;">
+                            <div class="mb-3">
+                                <label for="name" class="form-label" style="text-align: right;">اسم المتجر بالعربي</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name_kur" class="form-label" style="text-align: right;">اسم المتجر بالكردي</label>
+                                <input type="text" class="form-control" id="name_kur">
+                            </div>
+                            <div class="mb-3">
+                                <label for="storeNameArabic" class="form-label" style="text-align: right;">صورة اللوكو</label>
+                                <input class="form-control" type="file" id="logo" name="logo" multiple accept="image/*">
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="form-label">المحافظة</label>
+                                <select class="form-control" id="city" onchange="getCategories(this.value)">
+                                    <option disabled selected value> -- اختر المحافظة -- </option>
+                                    <option value="3">بغداد</option>
+                                    <option value="erbil">أربيل</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label" style="text-align: right;">القسم</label>
+                                <select class="form-control" id="category">
+                                    <option disabled selected value> -- اختر القسم -- </option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="description" class="form-label" style="text-align: right;">وصف المتجر</label>
+                                <textarea class="form-control" id="description" rows="4"></textarea>
+                            </div>
+                        </div>         
+
+
+                        <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links-tab" style="padding: 20px;">
+                            <div class="mb-3">
+                                <label for="facebook" class="form-label" style="text-align: right;">رابط فيس بوك</label>
+                                <input type="text" class="form-control" id="facebook">
+                            </div>
+                            <div class="mb-3">
+                                <label for="instagram" class="form-label" style="text-align: right;">رابط انستغرام</label>
+                                <input type="text" class="form-control" id="instagram">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telegram" class="form-label" style="text-align: right;">رابط تيك توك</label>
+                                <input type="text" class="form-control" id="telegram">
+                            </div>
+                            <div class="mb-3">
+                                <label for="whatsapp" class="form-label" style="text-align: right;">واتساب</label>
+                                <input type="text" class="form-control" id="whatsapp">
+                            </div>
+                        </div>      
+                        
+                        
+                        <div class="tab-pane fade" id="branches" role="tabpanel" aria-labelledby="branches-tab" style="padding: 20px;">
+                            <div class="mb-3">
+                                <label for="branchAddress" class="form-label">عنوان الفرع</label>
+                                <input type="text" class="form-control" id="branchAddress">
+                            </div>
+                            <div class="mb-3">
+                                <label for="branchPhone" class="form-label">رقم هاتف الفرع</label>
+                                <input type="text" class="form-control" id="branchPhone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="branchlocation" class="form-label">الموقع الجغرافي</label>
+                                <input type="text" class="form-control" id="branchlocation">
+                            </div>
+                        
+                            <!-- قائمة الفروع المضافة -->
+                            <ul id="branchList">
+                              
+                            </ul>
+                        
+                            <!-- زر إضافة الفرع -->
+                            <button id="addBranch" class="btn btn-primary">إضافة الفرع</button>
+                        </div>
+                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab" style="padding: 20px;">
+                                <div class="mb-3">
+                                    <label for="secondaryImages" class="form-label">ارفق صور المعرض (يمكنك اختيار حتى 10 صور)</label>
+                                    <input class="form-control" type="file" id="secondaryImages" name="secondaryImages[]" multiple accept="image/*">
+                                </div>
+                                <!-- مكان عرض الصور الثانوية المختارة -->
+                                <div id="secondaryImagesPreview" class="secondary-images-preview"></div>
+                            </div>
+                              
+                        <div class="tab-pane fade" id="offers" role="tabpanel" aria-labelledby="offers-tab" style="padding: 20px;">
+                            <div class="mb-3">
+                                <label for="offersImages" class="form-label">ارفق صور العروض الحصرية (يمكنك اختيار حتى 5 صور)</label>
+                                <input class="form-control" type="file" id="offersImages" name="offersImages[]" multiple accept="image/*">
+                            </div>
+                            <!-- مكان عرض الصور الثانوية المختارة -->
+                            <div id="offersImagesPreview" class="secondary-images-preview"></div>
+                        </div>
+                        <div class="tab-pane fade" id="ads" role="tabpanel" aria-labelledby="ads-tab" style="padding: 20px;">
+                            <div class="mb-3">
+                                <label for="adsImages" class="form-label">ارفق الصور الدعائية (يمكنك اختيار حتى 2 صور)</label>
+                                <input class="form-control" type="file" id="adsImages" name="adsImages[]" multiple accept="image/*">
+                            </div>
+                            <!-- مكان عرض الصور الثانوية المختارة -->
+                            <div id="adsImagesPreview" class="secondary-images-preview"></div>
+                        </div>
+                        <!-- إضافة المزيد من محتوى العلامات التبويبية هنا -->
+                    </div>
+                </div>
+                
+                  
+                
+                  <hr>
+
+                <p><a href="#">
+                     برمجة وتصميم علي سيكو
+                    </a>  </p>
+                </div>
+                
+              </section>
+
+
+        </div>
+      </main>
+      <!--Main layout-->
+</body>
+
+<script>
+ $('#upload').on('click', function() {
+  // البيانات الأساسية للمنتج
+  var file_data = $('#logo').prop('files')[0];
+  var name = $('#name').val();
+  var description = $('#description').val();
+  var category = $('#category').val();
+  var city = $('#city').val();
+  var facebook = $('#facebook').val();
+  var instagram = $('#instagram').val();
+  var whatsapp = $('#whatsapp').val();
+  var telegram = $('#telegram').val();
+
+  // التحقق من الحقول الفارغة
+  if (!name || !description || !category || !city || !facebook || !instagram || !whatsapp || !telegram) {
+    alert('يرجى ملء جميع الحقول المطلوبة.');
+    return; // لم يتم إرسال الطلب إذا كان أحد الحقول فارغًا
+  }
+
+  // التحقق من الحقول images و offers و ads
+
+
+  if (addedBranches.length === 0) {
+    alert('يرجى اضافة افرع.');
+    return;
+  }
+  if (images.length === 0) {
+    alert('يرجى تحميل صور المعرض.');
+    return;
+  }
+
+
+  // إنشاء كائن FormData وإرسال الطلب AJAX
+  var form_data = new FormData();
+  form_data.append('logo', file_data);
+  form_data.append('name', name);
+  form_data.append('name_kur', name_kur);
+  form_data.append('city', city);
+  form_data.append('description', description);
+  form_data.append('category', category);
+
+  form_data.append('facebook', facebook);
+  form_data.append('instagram', instagram);
+  form_data.append('whatsapp', category);
+  form_data.append('telegram', telegram);
+  form_data.append('branches', JSON.stringify(addedBranches));
+  images.forEach(function(file) {
+    form_data.append('images', file);
+  });
+
+  offers.forEach(function(file) {
+    form_data.append('offers', file);
+  });
+
+  ads.forEach(function(file) {
+    form_data.append('ads', file);
+  });
+
+  // إرسال الطلب AJAX
+  $.ajax({
+    url: 'http://127.0.0.1:3000/cbc/api/v1/Dash/addStore',
+    type: 'post',
+    data: form_data,
+    contentType: false,
+    processData: false,
+    success: function(response) {
+      alert(response);
+      //location.reload();
+    },
+    error: function(xhr, status, error) {
+      console.error('حدث خطأ:', error);
+    }
+  });
+});
+
+
+    function getCategories(id){
+        $.ajax({
+    url: 'http://127.0.0.1:3000/cbc/api/v1/GetCategory/' + id, // استبدل بالـ URL الصحيح لـ API الفئات
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      // تعبئة عنصر select بالفئات المسترجعة
+      var options = '<option disabled selected value> -- اختر القسم -- </option>';
+      data.forEach(function(category) {
+        options += '<option value="' + category.id + '">' + category.title + '</option>';
+      });
+      $('#category').html(options);
+    },
+    error: function (xhr, status, error) {
+      console.error('Error:', error);
+    }
+  });
+    }
+
+    var images = [];
+
+// عند تغيير قيمة حقل الصور الثانوية
+$('#secondaryImages').on('change', function() {
+  // التحقق من عدم تجاوز العدد الأقصى للصور
+  if (images.length + this.files.length > 10) {
+    alert('لا يمكنك رفع أكثر من 10 صور.');
+    return;
+  }
+
+  // إضافة الصور الجديدة إلى المصفوفة
+  for (var i = 0; i < this.files.length; i++) {
+    images.push(this.files[i]);
+  }
+
+  // تفريغ محتوى مربع المعاينة وعرض الصور المختارة
+  updateImagesPreview();
+});
+function updateImagesPreview() {
+  $('#secondaryImagesPreview').empty();
+  images.forEach(function(file, index) {
+    var img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.classList.add('preview-image');
+    img.onload = function() {
+      URL.revokeObjectURL(img.src); // تحرير الذاكرة
+    };
+    img.setAttribute('data-index', index);
+    $('#secondaryImagesPreview').append(img);
+  });
+}
+
+
+/// offers
+var offers = [];
+
+// عند تغيير قيمة حقل الصور الثانوية
+$('#offersImages').on('change', function() {
+  // التحقق من عدم تجاوز العدد الأقصى للصور
+  if (offers.length + this.files.length > 5) {
+    alert('لا يمكنك رفع أكثر من 5 صور.');
+    return;
+  }
+
+  // إضافة الصور الجديدة إلى المصفوفة
+  for (var i = 0; i < this.files.length; i++) {
+    offers.push(this.files[i]);
+  }
+
+  // تفريغ محتوى مربع المعاينة وعرض الصور المختارة
+  updateOffersImagesPreview();
+});
+function updateOffersImagesPreview() {
+  $('#offersImagesPreview').empty();
+  offers.forEach(function(file, index) {
+    var img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.classList.add('preview-image');
+    img.onload = function() {
+      URL.revokeObjectURL(img.src); // تحرير الذاكرة
+    };
+    img.setAttribute('data-index', index);
+    $('#offersImagesPreview').append(img);
+  });
+}
+//ads
+
+var ads = [];
+
+// عند تغيير قيمة حقل الصور الثانوية
+$('#adsImages').on('change', function() {
+  // التحقق من عدم تجاوز العدد الأقصى للصور
+  if (ads.length + this.files.length > 2) {
+    alert('لا يمكنك رفع أكثر من 2 صور.');
+    return;
+  }
+
+  // إضافة الصور الجديدة إلى المصفوفة
+  for (var i = 0; i < this.files.length; i++) {
+    ads.push(this.files[i]);
+  }
+
+  // تفريغ محتوى مربع المعاينة وعرض الصور المختارة
+  updateAdsImagesPreview();
+});
+function updateAdsImagesPreview() {
+  $('#adsImagesPreview').empty();
+  ads.forEach(function(file, index) {
+    var img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.classList.add('preview-image');
+    img.onload = function() {
+      URL.revokeObjectURL(img.src); // تحرير الذاكرة
+    };
+    img.setAttribute('data-index', index);
+    $('#adsImagesPreview').append(img);
+  });
+}
+</script>
+<script>
+    var addedBranches = [];
+  // تعريف المتغيرات
+const branchList = document.getElementById("branchList");
+const addBranchButton = document.getElementById("addBranch");
+
+// إضافة حدث النقر على زر "إضافة فرع"
+addBranchButton.addEventListener("click", () => {
+    const branchAddress = document.getElementById("branchAddress").value;
+    const branchPhone = document.getElementById("branchPhone").value;
+    const branchLocation = document.getElementById("branchlocation").value;
+
+    // إنشاء عنصر li لعرض الفرع المضاف
+    const listItem = document.createElement("li");
+    listItem.textContent = `عنوان الفرع: ${branchAddress} - رقم الهاتف: ${branchPhone} - الموقع الجغرافي: ${branchLocation}`;
+
+    // إضافة زر حذف لكل فرع
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "حذف";
+    deleteButton.classList.add("btn", "btn-danger", "btn-sm");
+    deleteButton.addEventListener("click", () => {
+        listItem.remove();
+        // قم بإزالة العنصر من المصفوفة عند الضغط على الزر
+        const index = addedBranches.findIndex(branch => branch.title === branchAddress);
+        if (index !== -1) {
+            addedBranches.splice(index, 1);
+        }
+    });
+    listItem.appendChild(deleteButton);
+
+    // إضافة العنصر إلى قائمة الفروع
+    branchList.appendChild(listItem);
+
+    // إضافة العنصر إلى المصفوفة
+    addedBranches.push({
+        title: branchAddress,
+        phone: branchPhone,
+        location: branchLocation
+    });
+
+    // مسح محتوى حقول الإدخال
+    document.getElementById("branchAddress").value = "";
+    document.getElementById("branchPhone").value = "";
+    document.getElementById("branchlocation").value = "";
+
+    // يمكنك الآن إرسال المصفوفة addedBranches إلى الـ API المعني
+});
+
+</script>
+
+</html>

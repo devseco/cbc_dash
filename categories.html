@@ -20,7 +20,7 @@
         $("#slider-container").load("/slider.html");
         $('#loading').show();
         $.ajax({
-          url: 'http://127.0.0.1:3000/getCategories',
+          url: 'http://89.116.110.51:4000/getCategories',
           type: 'GET',
           dataType: 'json',
           success: function (data) {
@@ -200,7 +200,7 @@ input[type=checkbox] {
         form_data.append('title', name); 
 
         $.ajax({
-                url         : 'http://127.0.0.1:3000/addCategory',     // point to server-side PHP script 
+                url         : 'http://89.116.110.51:4000/addCategory',     // point to server-side PHP script 
                 dataType    : 'text',           // what to expect back from the PHP script, if anything
                 cache       : false,
                 contentType : false,
