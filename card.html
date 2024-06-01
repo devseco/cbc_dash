@@ -266,7 +266,7 @@
                                 <div class="image-upload">
                             <label for="file_2023">
                                 <img id="image_2023" class="img_edit"/>
-                                <span class="input-group-text align-items-center justify-content-center" id="inputGroup-sizing-default">صورة 2023</span>
+                                <span class="input-group-text align-items-center justify-content-center" id="inputGroup-sizing-default">صورة 2024</span>
                             </label>
                             <input id="file_2023" type="file"  />
                             </div>
@@ -275,7 +275,7 @@
                                 <div class="image-upload">
                             <label for="file_2024">
                                 <img id="image_2024" class="img_edit"/>
-                                <span class="input-group-text align-items-center justify-content-center" id="inputGroup-sizing-default">صورة 2024</span>
+                                <span class="input-group-text align-items-center justify-content-center" id="inputGroup-sizing-default">صورة 2023</span>
                             </label>
                             <input id="file_2024" type="file"  />
                             </div>
@@ -467,6 +467,21 @@
            $('#image_2023').attr('src', e.target.result);
         }
        reader.readAsDataURL(input.files[0]);
+       var formData = new FormData();
+            formData.append('file', input.files[0]);
+       $.ajax({
+                url         : 'http://127.0.0.1:3000/cbc/api/v1/Dash/uploadBack',     // point to server-side PHP script 
+                dataType    : 'text',           // what to expect back from the PHP script, if anything
+                cache       : false,
+                contentType : false,
+                processData : false,
+                data        : formData,                         
+                type        : 'post',
+                success     : function(output){
+                    alert(output);              // display response from the PHP script, if any
+                    location.reload();
+                }
+         });
     }
     else
     {
@@ -483,11 +498,28 @@
     if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) 
      {
         var reader = new FileReader();
-
+      
         reader.onload = function (e) {
            $('#image_2024').attr('src', e.target.result);
         }
        reader.readAsDataURL(input.files[0]);
+       var formData = new FormData();
+            formData.append('file', input.files[0]);
+       $.ajax({
+                url         : 'http://127.0.0.1:3000/cbc/api/v1/Dash/uploadFront',     // point to server-side PHP script 
+                dataType    : 'text',           // what to expect back from the PHP script, if anything
+                cache       : false,
+                contentType : false,
+                processData : false,
+                data        : formData,                         
+                type        : 'post',
+                success     : function(output){
+                    alert(output);              // display response from the PHP script, if any
+                    location.reload();
+                }
+         });
+
+       
     }
     else
     {
