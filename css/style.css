@@ -79,9 +79,9 @@ body {
             object-fit: cover;
           }
           .img_edit{
-            width:120px;
+            width:200px;
             height:120px;
-            border-radius: 50%;
+            border-radius: 10%;
             border-style: dotted;
             object-fit: cover;
             margin-bottom: 20px;

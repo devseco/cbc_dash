@@ -22,11 +22,9 @@
   $('#save').on('click', function() {
         var file_data = $('#file-input').prop('files')[0];
         var title = document.getElementById("title").value;
-     
         var form_data = new FormData();  // Create a FormData object
         form_data.append('file', file_data);  // Append all element in FormData  object
         form_data.append('title', title); 
-
         $.ajax({
                 url         : 'http://127.0.0.1:3000/cbc/api/v1/Dash/addCity',     // point to server-side PHP script 
                 dataType    : 'text',           // what to expect back from the PHP script, if anything
